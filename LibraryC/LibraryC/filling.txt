@@ -1,9 +1,9 @@
 10
-J.R.R.Tolkien Smith&Company The_Lord_of_the_Rings 0 5.0 1
-M.Shelley Collins Frankenstein 1 4.2 1
-S.King Penguin The_Dark_Tower 0 4.73 1
-F.S.Fitzgerald Penguin The_Great_Gatsby 2 4.0 0
-M.Shelley Allen&Unwin The_Haunted_Castle 1 4.75 0
+J.R.R.Tolkien;Smith&Company;The Lord of the Rings;0;5.0;1
+M.Shelley;Collins;Frankenstein;1;4.2;1
+S.King;Penguin;The Dark Tower;0;4.73;1
+F.S.Fitzgerald;Penguin;The Great Gatsby;2;4.0;0
+M.Shelley;Allen&Unwin;The Haunted Castle;1;4.75;0
 C.Williams Collins The_Shadows_of_the_Night 1 4.45 0
 J.R.Brown Smith&Company The_Secret_of_the_Ancients 2 4.2 1
 C.V.Hoften Allen&Unwin A_Tale_of_Blood_and_Roses 0 5.0 1

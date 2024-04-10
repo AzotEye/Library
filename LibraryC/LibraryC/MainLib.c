@@ -4,16 +4,16 @@
 
 int main(int argc ,char ** argv)
 {
+    Library Lib;
+    char* infilename;
     if (argc < 2)
     {
         printf("Incorrect arguments!");
         return 0;
     }
-    char* infilename = argv[1];
-    
-    Library *Lib = malloc(1);
-    fillLibrary(infilename, Lib);  
-    selectSection(Lib);
-    wipe(Lib);
-    return 1;
+    infilename = argv[1];   
+    fillLibrary(infilename, &Lib);
+    selectSection(&Lib);
+    wipe(&Lib);
+    return 0;
 }

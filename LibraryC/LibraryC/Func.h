@@ -14,6 +14,6 @@ void fillLibrary(const char* filename, Library* Lib);
 void printBook(Book* book);
 int printSection();
 void selectSection(Library* Lib);
-void printSectionBooks(int section, Library* Lib, int* idx);
+void printSectionBooks(int section, Library* Lib, int** idx);
 void selectBook(int* idx, Library* Lib);
-void all_idx(int* idx, int n);
+void all_idx(int** idx, int n);
