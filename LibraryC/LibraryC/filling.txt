@@ -1,11 +1,11 @@
 10
-J.R.R.Tolkien Smith&Company The_Lord_of_the_Rings Fantasy 5.0 available
-M.Shelley Collins Frankenstein Horror 4.2 available
-S.King Penguin The_Dark_Tower Fantasy 4.73 available
-F.S.Fitzgerald Penguin The_Great_Gatsby Historical 4.0 not_available
-M.Shelley Allen&Unwin The_Haunted_Castle Horror 4.75 available
-C.Williams Collins The_Shadows_of_the_Night Horror 4.45 not_available
-J.R.Brown Smith&Company The_Secret_of_the_Ancients Historical 4.2 available
-C.V.Hoften Allen&Unwin A_Tale_of_Blood_and_Roses Fantasy 5.0 available
-S.D.Young Smith&Company The_Ghost_of_the_Past Historical 4.89 not_available
-B.Stoker Collins Dracula Horror 4.34 available
+J.R.R.Tolkien Smith&Company The_Lord_of_the_Rings 0 5.0 1
+M.Shelley Collins Frankenstein 1 4.2 1
+S.King Penguin The_Dark_Tower 0 4.73 1
+F.S.Fitzgerald Penguin The_Great_Gatsby 2 4.0 0
+M.Shelley Allen&Unwin The_Haunted_Castle 1 4.75 0
+C.Williams Collins The_Shadows_of_the_Night 1 4.45 0
+J.R.Brown Smith&Company The_Secret_of_the_Ancients 2 4.2 1
+C.V.Hoften Allen&Unwin A_Tale_of_Blood_and_Roses 0 5.0 1
+S.D.Young Smith&Company The_Ghost_of_the_Past 2 4.89 0
+B.Stoker Collins Dracula 1 4.34 1

@@ -1,149 +1,170 @@
 #include <stdio.h>
+#include <stdlib.h>                                               
 #include <string.h>
 #include "Func.h"
 
-void fillLibrary(const char* filename, Library* Lib)
+
+void allstr(Book* book)
 {
-    FILE* f = fopen(filename, "r");
-    if (f == NULL)
-    {
-        printf("The file was not found");
-        abort();
-    }
-    fscanf(f, "%d", &Lib->count);
-    Lib->books = (Book*)malloc(Lib->count * sizeof(Book));
-    int i = 0;
+    book->author = (char*)malloc(L * sizeof(char));
+    book->publisher = (char*)malloc(L * sizeof(char));
+    book->name = (char*)malloc(L * sizeof(char));
+    return;
+} 
+
+void wipe(Library* Lib)
+{
+    int i;
     for (i = 0; i < Lib->count; i++)
     {
-        fscanf(f, "%s %s %s %d %lf %d ", &Lib->books[i].author, &Lib->books[i].publisher,
-            &Lib->books[i].name, &Lib->books[i].section, &Lib->books[i].review, &Lib->books[i].isAvailable);
+        free(Lib->books[i].author);
+        free(Lib->books[i].name);
+        free(Lib->books[i].publisher);
     }
-    fclose(f);
+    free(Lib->books);
     return;
 }
 
 void printBook(Book* book)
 {
+    char* section = NULL, * avail = NULL;
     switch (book->section)
     {
     case 0:
-        printf("Section: Fantasy; ");
+        section = "Fantasy";
         break;
     case 1:
-        printf("Section: Horror; ");
+        section = "Horror";
         break;
     case 2:
-        printf("Section: History; ");
+        section = "Historical";
         break;
     }
-    printf("Author: %s; Publisher: %s; Name: %s; Star review: %lf/5; Availability: %d;\n", book->author, book->publisher, book->name, book->review, book->isAvailable);
-    return;
-}
-
-void getSectionBooks(Library* Lib, int section, int** idx)
-{    
-    int i = 0;
-    idx = (int**)malloc(Lib->count * sizeof(int*));
-    for (i = 0; i < Lib->count; i++)
-    {
-        idx[i] = 0;
-    }
-    switch (section)
+    switch (book->isAvailable)
     {
     case 0:
-        printf("Fantasy");
+        avail = "Not_Available";
         break;
     case 1:
-        printf("Horror");
-        break;
-    case 2:
-        printf("History");
+        avail = "Available";
         break;
     }
+    printf("%s by %s. Section: %s. Publisher: %s. Star rating: %lf. Availability: %s\n", book->name, book->author, section, book->publisher, book->review, avail);
+    return;
+}
+
+void fillLibrary(const char* filename, Library* Lib)
+{
+    FILE* f = fopen(filename, "r");
+    if (f == NULL)      
+    {
+        printf("The file was not found");
+        abort();
+    }
+    int i;
+    fscanf(f, "%d", &Lib->count);
+    Lib->books = (Book*)malloc(Lib->count * sizeof(Book));
     for (i = 0; i < Lib->count; i++)
     {
-        if (Lib->books[i].section == section)
-        {
-            printf("%s\n", Lib->books[i].name);
-            idx[i] ++;
-        }
+        allstr(&Lib->books[i]);
+        fscanf(f, "%s %s %s %d %lf %d", Lib->books[i].author, Lib->books[i].publisher, Lib->books[i].name, &Lib->books[i].section, &Lib->books[i].review, &Lib->books[i].isAvailable);
     }
+    fclose(f);
     return;
 }
 
-void selectByName(int* idx, Library* Lib)
-{
-    int flag = 1;
-    while (flag == 1)
-    {
-        printf("\nDo you want to view more data about any book? ");
-        scanf("%d", &flag);
-
-        if (flag != 1)
-        {
-            return;
-        }
-        
-        char bookName[50];
-        int i = 0;
-
-        printf("\nInput the name of the book: ");
-        scanf("%s", &bookName);
-
-        for (i = 0; i < Lib->count; i++)
-        {
-            if ((idx[i] == 1) && (strcmp(Lib->books[i].name, bookName) == 0))
-            {
-                printBook(&Lib->books[i]);
-            }
-        }
-    };
-    return;
-}
-
-int selectSection()
+int printSection()
 {
     int section = 0;
     do
     {
-        printf("Sections:\n1.Horror\n2.Fantasy\n3.Historical\nChoose any section: ");
+        printf("Select section:\n1.Fantasy\n2.Horror\n3.Historycal\n");
         scanf("%d", &section);
-        section--;
     } while ((section > 3) || (section < 1));
-    return section;
+    return section - 1;
 }
 
-void selectBook(Library* Lib)
+void printSectionBooks(int section, Library* Lib, int ** idx)
 {
-    int section, flag = 0;
-    int** idx;
-    do 
+    int i, k = 1;
+    
+    all_idx(idx, Lib->count);
+    for (i = 0; i < Lib->count; i++)
     {
-        section = selectSection(); 
-        int* idx = NULL;
+        if (Lib->books[i].section == section)
+        {
+            printf("%d. %s\n", k, Lib->books[i].name);
+            k++;
+            idx[i] = 1;
+        }
+    }
+    return;
+}
+
+void all_idx(int ** idx, int n)
+{
+    int i;
+    *idx = (int*)malloc(n * sizeof(int));
+    for (i = 0; i < n; i++)
+    {
+        idx[i] = 0;
+    }
+    return;
+}
+
+void selectSection(Library* Lib)                         
+{
+    int flag = 0;
+    do
+    {
+        int section = printSection();
+        int** idx = NULL;
         switch (section)
         {
         case 0:
-            getSectionBooks(Lib, section, *idx);
-            selectByName(*idx, Lib);
+            printf("Fantasy:\n");
+            printSectionBooks(section, Lib, &idx);
+            selectBook(&idx, Lib);
             break;
         case 1:
-            getSectionBooks(Lib, section, *idx);
-            selectByName(*idx, Lib);
+            printf("Horror:\n");
+            printSectionBooks(section, Lib, &idx);
+            selectBook(&idx, Lib);
             break;
         case 2:
-            getSectionBooks(Lib, section, *idx);
-            selectByName(*idx, Lib);
-            break;
-        default:
+            printf("Historical:\n");
+            printSectionBooks(section, Lib, &idx);
+            selectBook(&idx, Lib);
             break;
         }
-        
-        printf("\nChoose another section? ");
+        printf("Choose another seciton?\n");
         scanf("%d", &flag);
-        printf("\n");
-
+        free(idx);
     } while (flag == 1);
-    
+    return;
+}
+
+void selectBook(int** idx, Library* Lib)
+{
+    int flag = 0, i;
+    do 
+    {
+        printf("Do you want to learn more about any book?\n");
+        scanf("%d", &flag);
+        if (flag != 1)
+        {
+            break;
+        }
+        char BookName[50];
+        printf("Enter name of the book:\n");
+        scanf("%s", &BookName);
+        for (i = 0; i < Lib->count; i++)
+        {
+            if ((strcmp(Lib->books[i].name, BookName) == 0) && (idx[i] == 1))
+            {
+                printBook(&Lib->books[i]);
+            }
+        }
+    } while (flag == 1);
     return;
 }

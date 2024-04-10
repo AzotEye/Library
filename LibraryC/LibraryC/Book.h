@@ -1,5 +1,4 @@
 #pragma once
-#define L 50
 
 typedef enum
 {
@@ -16,12 +15,10 @@ typedef enum
 
 typedef struct
 {
-    char author[L]; // char*
-    char publisher[L]; // char*
-    char name[L]; // char*
-
+    char* author; 
+    char* publisher; 
+    char* name; 
     SectionType section;
-
     double review;
     Presence isAvailable;
 }Book;

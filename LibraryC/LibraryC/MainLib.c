@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "Func.h"
 
 int main(int argc ,char ** argv)
@@ -8,12 +9,11 @@ int main(int argc ,char ** argv)
         printf("Incorrect arguments!");
         return 0;
     }
-
     char* infilename = argv[1];
-    Book Library[10];
-
-    fillLibrary(infilename, Library);
-    selectBook(Library);
-
+    
+    Library *Lib = malloc(1);
+    fillLibrary(infilename, Lib);  
+    selectSection(Lib);
+    wipe(Lib);
     return 1;
 }
