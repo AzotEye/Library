@@ -63,7 +63,7 @@ void fillLibrary(const char* filename, Library* Lib)
         printf("The file was not found");
         abort();
     }    
-    fscanf(f, "%d", &(Lib->count));
+    fscanf(f, "%d ", &(Lib->count));
     Lib->books = (Book*)malloc(Lib->count * sizeof(Book));
     for (i = 0; i < Lib->count; i++)
     {
@@ -71,11 +71,19 @@ void fillLibrary(const char* filename, Library* Lib)
         buf = (char*)malloc(sizeof(char) * L);
         fgets(buf, 255, f);
         fub = strtok(buf, ";");
-        while (fub != NULL)
-        {
-            ptinft("%s", fub);
-            fub = strtok(buf, ";");
-        }
+        Lib->books[i].author = fub;
+        fub = strtok(NULL, ";");
+        Lib->books[i].publisher = fub;
+        fub = strtok(NULL, ";");
+        Lib->books[i].name = fub;
+        fub = strtok(NULL, ";");
+        Lib->books[i].section = atoi(fub);
+        fub = strtok(NULL, ";");
+        Lib->books[i].review = atoi(fub);
+        fub = strtok(NULL, ";");
+        Lib->books[i].isAvailable = atoi(fub);
+        fub = strtok(NULL, ";");
+        
     }
     fclose(f);
     return;
@@ -156,9 +164,10 @@ void selectSection(Library* Lib)
 void selectBook(int* idx, Library* Lib)
 {
     int flag = 0, i;
+    char trs[1], *bknm;
     do 
     {
-        char BookName[50];
+        bknm = (char*)malloc(L * sizeof(char));
         printf("Do you want to learn more about any book?\n");
         scanf("%d", &flag);
         if (flag != 1)
@@ -166,14 +175,16 @@ void selectBook(int* idx, Library* Lib)
             break;
         }        
         printf("Enter name of the book:\n");
-        scanf("%s", BookName);
+        scanf("%c", &trs);
+        gets_s(bknm, L);
         for (i = 0; i < Lib->count; i++)
         {
-            if ((strcmp(Lib->books[i].name, BookName) == 0) && (idx[i] == 1))
+            if ((strcmp(Lib->books[i].name, bknm) == 0) && (idx[i] == 1))
             {
                 printBook(&(Lib->books[i]));
             }
         }
+        free(bknm);
     } while (flag == 1);
     return;
 }
