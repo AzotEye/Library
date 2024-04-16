@@ -56,7 +56,7 @@ void printBook(Book* book)
 void fillLibrary(const char* filename, Library* Lib)
 {
     int i;
-    char *buf, *fub;
+    char *buf;
     FILE* f = fopen(filename, "r");
     if (f == NULL)      
     {
@@ -65,25 +65,19 @@ void fillLibrary(const char* filename, Library* Lib)
     }    
     fscanf(f, "%d ", &(Lib->count));
     Lib->books = (Book*)malloc(Lib->count * sizeof(Book));
+    
     for (i = 0; i < Lib->count; i++)
     {
-        allstr(&(Lib->books[i]));
         buf = (char*)malloc(sizeof(char) * L);
+        allstr(&(Lib->books[i]));
         fgets(buf, 255, f);
-        fub = strtok(buf, ";");
-        Lib->books[i].author = fub;
-        fub = strtok(NULL, ";");
-        Lib->books[i].publisher = fub;
-        fub = strtok(NULL, ";");
-        Lib->books[i].name = fub;
-        fub = strtok(NULL, ";");
-        Lib->books[i].section = atoi(fub);
-        fub = strtok(NULL, ";");
-        Lib->books[i].review = atoi(fub);
-        fub = strtok(NULL, ";");
-        Lib->books[i].isAvailable = atoi(fub);
-        fub = strtok(NULL, ";");
-        
+        strcpy(Lib->books[i].author, strtok(buf, ";"));
+        strcpy(Lib->books[i].publisher, strtok(NULL, ";"));
+        strcpy(Lib->books[i].name, strtok(NULL, ";"));
+        Lib->books[i].section = atoi(strtok(NULL, ";"));
+        Lib->books[i].review = atoi(strtok(NULL, ";"));
+        Lib->books[i].isAvailable = atoi(strtok(NULL, ";"));
+        free(buf);
     }
     fclose(f);
     return;
@@ -164,7 +158,7 @@ void selectSection(Library* Lib)
 void selectBook(int* idx, Library* Lib)
 {
     int flag = 0, i;
-    char trs[1], *bknm;
+    char trs, *bknm;
     do 
     {
         bknm = (char*)malloc(L * sizeof(char));
