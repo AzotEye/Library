@@ -43,7 +43,7 @@ void printBook(Book* book)
     switch (book->isAvailable)
     {
     case 0:
-        avail = "Not_Available";
+        avail = "Not Available";
         break;
     case 1:
         avail = "Available";
@@ -147,7 +147,7 @@ void selectSection(Library* Lib)
             selectBook(idx, Lib);
             break;
         }
-        printf("Choose another seciton?\n");
+        printf("Choose another section?\n");
         scanf("%d", &flag);
         
     } while (flag == 1);
