@@ -1,1 +1,11 @@
-10 J.R.R.Tolkien;Smith&Company;The Lord of the Rings;0;5.0;1;M.Shelley;Collins;Frankenstein;1;4.2;1;S.King;Penguin;The Dark Tower;0;4.73;1;F.S.Fitzgerald;Penguin;The Great Gatsby;2;4.0;0;M.Shelley;Allen&Unwin;The Haunted Castle;1;4.75;0;C.Williams;Collins;The Shadows of the Night;1;4.45;0;J.R.Brown;Smith&Company;The Secret of the Ancients;2;4.2;1;C.V.Hoften;Allen&Unwin;A Tale of Blood and Roses;0;5.0;1;S.D.Young;Smith&Company;The Ghost of the Past;2;4.89;0;B.Stoker;Collins;Dracula;1;4.34;1;
+10
+J.R.R.Tolkien;Smith&Company;The Lord of the Rings;0;5.0;1;
+M.Shelley;Collins;Frankenstein;1;4.2;1;
+S.King;Penguin;The Dark Tower;0;4.73;1;
+F.S.Fitzgerald;Penguin;The Great Gatsby;2;4.0;0;
+M.Shelley;Allen&Unwin;The Haunted Castle;1;4.75;0;
+C.Williams;Collins;The Shadows of the Night;1;4.45;0;
+J.R.Brown;Smith&Company;The Secret of the Ancients;2;4.2;1;
+C.V.Hoften;Allen&Unwin;A Tale of Blood and Roses;0;5.0;1;
+S.D.Young;Smith&Company;The Ghost of the Past;2;4.89;0;
+B.Stoker;Collins;Dracula;1;4.34;1;

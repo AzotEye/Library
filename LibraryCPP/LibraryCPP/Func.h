@@ -1,8 +1,4 @@
 #pragma once
-#include "Library.h"
+#include "Book.h"
 
-int SelectSection(Library& Lib);
-
-void PrintSection(Library& Lib);
-
-void PrintFullBook(Library& Lib, int* idx);
+SCTN convert(string& buf);

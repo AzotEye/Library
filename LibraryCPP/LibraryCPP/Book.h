@@ -3,47 +3,34 @@
 #include <iostream>
 using namespace std;
 
+enum class SCTN { Fantasy, Horror, Historical };
 
 class Book
 {
-private:
+public:
     string Name;
     string Autor;
     string Publisher;
     double Review;
-    int Section;
-    int Availability;
-public:
-    string getName() const { return Name; };
-    string getAutor() const { return Autor; };
-    string getPublisher() const { return Publisher; };
-    double getReview() const { return Review; };
-    int getSection() const { return Section; };
-    int getAvailability() const { return Availability; };
-
-    void setName(string name) { Name = name; }
-    void setAutor(string autor) { Autor = autor; }
-    void setPublisher(string publisher) { Publisher = publisher; }
-    void setReview(double review) { Review = review; }
-    void setSection(int section) { Section = section; }
-    void setAvailability(int availability) { Availability = availability; }
+    SCTN Section;
+    bool Availability;
 
     friend ostream& operator << (ostream& os, const Book& book)
     {
         string sect, avail;
-        switch (book.getSection())
+        switch (book.Section)
         {
-        case 0:
+        case SCTN::Fantasy:
             sect = "Fantasy";
             break;
-        case 1:
+        case SCTN::Horror:
             sect = "Horror";
             break;
-        case 2:
+        case SCTN::Historical:
             sect = "Historical";
             break;
         }
-        switch (book.getAvailability())
+        switch (book.Availability)
         {
         case 0:
             avail = "Available";
@@ -52,7 +39,7 @@ public:
             avail = "Not available";
             break;
         }
-        os << "'" << book.getName() << "' by " << book.getAutor() << ". Section: "<< sect << ". Star rating: " << book.getReview() << "/5. Availability: " << avail << endl;
+        os << "'" << book.Name << "' by " << book.Autor << ". Section: "<< sect << ". Star rating: " << book.Review << "/5. Availability: " << avail << endl;
         return os;
     }
 };

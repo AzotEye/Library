@@ -1,12 +1,17 @@
 #include <iostream>
 #include "Book.h"
-#include "Func.h"
 #include "Library.h"
+#include "Func.h"
 
-int main()
+int main(int argc, char** argv)
 {
-    int i;
-    Library Lib = Library("filling.txt");
-    PrintSection(Lib);
+    if (argc < 2)
+    {
+        cout << "Wrong arguments";
+        return 1;
+    }
+    string file = argv[1];
+    Library Lib = Library(file);
+    cout << Lib;
     return 0;
 }

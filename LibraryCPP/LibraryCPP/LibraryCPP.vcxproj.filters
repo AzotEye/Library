@@ -23,13 +23,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Func.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Book.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Library.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Func.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
