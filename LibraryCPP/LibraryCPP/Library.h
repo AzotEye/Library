@@ -6,7 +6,7 @@ class Library
 private:
     int count;
     Book* books;
-
+    SCTN convert(const string& buf);
 public:
     int getCount() const { return count; };
     Book* getBooks() const { return books; };

@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-enum class SCTN { Fantasy, Horror, Historical };
+enum SCTN { Fantasy, Horror, Historical };
 
 class Book
 {

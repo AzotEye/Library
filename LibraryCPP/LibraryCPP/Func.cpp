@@ -1,5 +1,5 @@
 #include "Library.h"
-#include "Func.h"
+#include "Book.h"
 #include <fstream>
 
 Library::Library(const string& Filename)
@@ -85,7 +85,7 @@ void Library::PrintFullBook(SCTN section)const
     return;
 }
 
-SCTN convert(string& buf)
+SCTN Library::convert(const string& buf)
 {
     int i = stoi(buf);
     SCTN section;
